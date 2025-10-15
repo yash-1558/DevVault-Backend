@@ -1,0 +1,31 @@
+version: '3.9'
+services:
+  postgres:
+    image: postgres:16
+    container_name: devvault_postgres
+    environment:
+      POSTGRES_USER: devvault_user
+      POSTGRES_PASSWORD: devvault_pass
+      POSTGRES_DB: devvault_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  mongo:
+    image: mongo:7
+    container_name: devvault_mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+
+  redis:
+    image: redis:7
+    container_name: devvault_redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  pgdata:
+  mongodata:
